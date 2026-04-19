@@ -90,8 +90,8 @@ class base_model(nn.Module):
             label_all = torch.from_numpy(labels).cuda()
             mask = adj.eq(0)
             key_padding_mask = sequence_mask_reverse(token_length)  # 创建掩码
-            # dep_relation_embs = self.dep_embedding(label_all)
-            dep_relation_embs = None
+            dep_relation_embs = self.dep_embedding(label_all)
+            # dep_relation_embs = None
             graph_out = self.Graph_encoder(
                 bert_out, mask=mask, src_key_padding_mask=key_padding_mask, structure=dep_relation_embs
             )
